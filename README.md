@@ -4,3 +4,9 @@ here is the course I am learning from https://www.youtube.com/watch?v=EiA4fRfLuC
 
 also I am using linuxmint for this project.
 In case the course is too old please refer to a new one.
+refer to this link for markdown fx -https://www.markdownguide.org/cheat-sheet/
+
+for using maths we have to use latex functions
+please refer to this url for latex functions https://katex.org/docs/supported.html
+
+
