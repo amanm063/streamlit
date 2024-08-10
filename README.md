@@ -9,4 +9,10 @@ refer to this link for markdown fx -https://www.markdownguide.org/cheat-sheet/
 for using maths we have to use latex functions
 please refer to this url for latex functions https://katex.org/docs/supported.html
 
-
+instead of using pip i am trying uv
+just paste this in the terminal 
+    pip install uv
+why uv?
+according to a streamlit doc uv is 10 times faster than pip in installing any lib
+just use uv pip install instead of pip install.
+It is open source also.
