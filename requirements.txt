@@ -1,0 +1,13 @@
+# run uv pip install -r requirements.txt in terminal to install all these and add more if you want
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+plotly
+altair
+bokeh
+pillow
+opencv-python
+jupyter
