@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 st.title("Matplot lib static plots")
 df = pd.read_csv("tips.csv")
@@ -50,3 +51,62 @@ with st.container():
         # fig.tight_layout()
         st.pyplot(fig, clear_figure=False)
         # st.write("")  # add some whitespace
+
+st.markdown('---')
+st.write("Using sns for boxplot and finding the spends for different sex")
+
+with st.container():
+    fig,ax = plt.subplots()
+    sns.set_theme(style="darkgrid")
+    
+    sns.boxplot(x="sex", y="total_bill", data=df, hue = "sex")
+    st.pyplot(fig)
+
+st.markdown('---')
+st.write("Using plotly for boxplot and finding the spends for different sex")
+with st.container():
+    fig = px.box(df, x="sex", y="total_bill",color="smoker",color_discrete_sequence=["#3498db", "#e74c3c"])
+    st.plotly_chart(fig)
+
+
+st.markdown('---')
+st.write("Using plotly and finding the spends for different sex but now  you choose which chart you want to display")
+chart = ('box','violin','histogram')
+chart_select = st.selectbox("Please choose one chart type",chart)
+with st.container():
+    if chart_select == 'box':
+        fig = px.box(df, x="sex", y="total_bill",color="smoker",color_discrete_sequence=["#3498db", "#e74c3c"])
+        st.plotly_chart(fig)
+    elif chart_select == 'violin':
+        fig = px.violin(df, x="sex", y="total_bill",color="smoker",color_discrete_sequence=["#3498db", "#e74c3c"])
+        st.plotly_chart(fig)
+    elif chart_select == 'histogram':
+        fig = px.histogram(df, x="sex", y="total_bill",color="smoker",color_discrete_sequence=["#3498db", "#e74c3c"])
+        st.plotly_chart(fig)
+st.markdown('---')
+# st.write("Using plotly and finding the spends for different sex but now  you choose which chart you want to display")
+df_grouped = df.groupby(['day','sex'])['total_bill'].sum().reset_index()
+st.write(df_grouped)
+with st.container():
+    fig = px.line(df_grouped, x="day", y="total_bill", color="sex", color_discrete_sequence=["#3498db", "#e74c3c"])
+    st.plotly_chart(fig)
+
+
+# st.markdown('---')
+# st.write("Using plotly and finding the spends for different columns")
+
+# feature = ["total_bill"]
+# columns_selected = st.multiselect("Select columns to display", cat_columns)
+# chart_type = st.selectbox("Select chart type", ["line", "bar"])
+
+# if columns_selected:  # Check if columns_selected is not empty
+#     df_grouped = df.groupby(columns_selected)[feature].sum().reset_index()
+
+#     if chart_type == "line":
+#         fig = px.line(df_grouped, x=columns_selected[0], y=feature[0], color_discrete_sequence=["#3498db", "#e74c3c"])
+#     elif chart_type == "bar":
+#         fig = px.bar(df_grouped, x=columns_selected[0], y=feature[0], color_discrete_sequence=["#3498db", "#e74c3c"])
+
+#     st.plotly_chart(fig)
+# else:
+#     st.write("Please select at least one column to display.")
